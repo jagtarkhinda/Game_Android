@@ -58,6 +58,7 @@ public class GameEngine extends SurfaceView implements Runnable {
         Bitmap player;
         Bitmap enemy;
         Rect playerHitBox;
+        Rect enemyHitBox;
         Point playerPos;
         Point enemyPos;
     // ----------------------------
@@ -99,6 +100,13 @@ public class GameEngine extends SurfaceView implements Runnable {
                 playerPos.y,
                 playerPos.x + player.getWidth(),
                 playerPos.y + player.getHeight());
+
+        //initial enemy hitbox position
+        enemyHitBox = new Rect(
+                enemyPos.x,
+                enemyPos.y,
+                enemyPos.x + enemy.getWidth(),
+                enemyPos.y + enemy.getHeight());
 
 
         // @TODO: Any other game setup stuff goes here
@@ -180,7 +188,7 @@ public class GameEngine extends SurfaceView implements Runnable {
                 paintbrush.setColor(Color.BLUE);
                 paintbrush.setStyle(Paint.Style.STROKE);
                 paintbrush.setStrokeWidth(5);
-                
+
                 //drawing the player hitbox
                 canvas.drawRect(this.playerHitBox.left,
                         this.playerHitBox.top,
@@ -189,6 +197,12 @@ public class GameEngine extends SurfaceView implements Runnable {
 
                 //drawing the enemy ship
                 canvas.drawBitmap(enemy,enemyPos.x,enemyPos.y, paintbrush);
+
+            //drawing the enemy hitbox
+            canvas.drawRect(this.enemyHitBox.left,
+                    this.enemyHitBox.top,
+                    this.enemyHitBox.right,
+                    this.enemyHitBox.bottom,paintbrush);
 
 
 
