@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.util.Log;
@@ -56,7 +57,9 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
         Bitmap player;
         Bitmap enemy;
-
+        Rect playerHitBox;
+        Point playerPos;
+        Point enemyPos;
     // ----------------------------
     // ## GAME STATS - number of lives, score, etc
     // ----------------------------
@@ -76,9 +79,26 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.printScreenInfo();
 
         // @TODO: Add your sprites to this section
-            // added player image as bitmap
-            this.player = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_ship);
-            this.enemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.alien_ship1);
+        // added player image as bitmap
+        this.player = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_ship);
+        //initial player position
+        playerPos = new Point();
+        playerPos.x = 100;
+        playerPos.y = 120;
+
+        // added enemy image as bitmap
+        this.enemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.alien_ship1);
+        //initial enemy position
+        enemyPos = new Point();
+        enemyPos.x = this.screenWidth - 500;
+        enemyPos.y = 120;
+
+        //initial player hitbox position
+        playerHitBox = new Rect(
+                playerPos.x,
+                playerPos.y,
+                playerPos.x + player.getWidth(),
+                playerPos.y + player.getHeight());
 
 
         // @TODO: Any other game setup stuff goes here
@@ -156,8 +176,19 @@ public class GameEngine extends SurfaceView implements Runnable {
                 //drawing the player ship
                 canvas.drawBitmap(player,100,120,paintbrush);
 
+                //changing the paintbrush color so hitbox can be visible
+                paintbrush.setColor(Color.BLUE);
+                paintbrush.setStyle(Paint.Style.STROKE);
+                paintbrush.setStrokeWidth(5);
+                
+                //drawing the player hitbox
+                canvas.drawRect(this.playerHitBox.left,
+                        this.playerHitBox.top,
+                        this.playerHitBox.right,
+                        this.playerHitBox.bottom,paintbrush);
+
                 //drawing the enemy ship
-                canvas.drawBitmap(enemy,this.screenWidth - 300,100, paintbrush);
+                canvas.drawBitmap(enemy,enemyPos.x,enemyPos.y, paintbrush);
 
 
 
