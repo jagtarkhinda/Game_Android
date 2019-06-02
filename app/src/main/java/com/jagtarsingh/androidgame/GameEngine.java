@@ -148,7 +148,7 @@ public class GameEngine extends SurfaceView implements Runnable {
             // Put all your drawing code in this section
 
             // configure the drawing tools
-            this.canvas.drawColor(Color.argb(255,0,0,255));
+            this.canvas.drawColor(Color.argb(255,255,255,255));
             paintbrush.setColor(Color.WHITE);
 
 
