@@ -55,6 +55,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ## SPRITES
     // ----------------------------
         Bitmap player;
+        Bitmap enemy;
 
     // ----------------------------
     // ## GAME STATS - number of lives, score, etc
@@ -77,6 +78,7 @@ public class GameEngine extends SurfaceView implements Runnable {
         // @TODO: Add your sprites to this section
             // added player image as bitmap
             this.player = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_ship);
+            this.enemy = BitmapFactory.decodeResource(context.getResources(), R.drawable.alien_ship1);
 
 
         // @TODO: Any other game setup stuff goes here
@@ -151,7 +153,15 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
             //@TODO: Draw the sprites (rectangle, circle, etc)
+                //drawing the player ship
                 canvas.drawBitmap(player,100,120,paintbrush);
+
+                //drawing the enemy ship
+                canvas.drawBitmap(enemy,this.screenWidth - 300,100, paintbrush);
+
+
+
+
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
             canvas.drawText("Score: 25", 20, 100, paintbrush);
