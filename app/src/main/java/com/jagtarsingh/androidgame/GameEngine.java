@@ -151,7 +151,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
             //@TODO: Draw the sprites (rectangle, circle, etc)
-
+                canvas.drawBitmap(player,100,120,paintbrush);
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
             canvas.drawText("Score: 25", 20, 100, paintbrush);
