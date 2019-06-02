@@ -2,6 +2,8 @@ package com.jagtarsingh.androidgame;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -52,6 +54,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## SPRITES
     // ----------------------------
+        Bitmap player;
 
     // ----------------------------
     // ## GAME STATS - number of lives, score, etc
@@ -72,9 +75,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.printScreenInfo();
 
         // @TODO: Add your sprites to this section
-        // This is optional. Use it to:
-        //  - setup or configure your sprites
-        //  - set the initial position of your sprites
+            // added player image as bitmap
+            this.player = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_ship);
 
 
         // @TODO: Any other game setup stuff goes here
